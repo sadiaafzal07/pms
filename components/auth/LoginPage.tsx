@@ -106,20 +106,6 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Role */}
-              <div className="space-y-2">
-                <Label htmlFor="role">Role</Label>
-                <Select value={role} onValueChange={setRole} disabled={isLoading}>
-                  <SelectTrigger id="role">
-                    <SelectValue placeholder="Select your role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="staff">Staff</SelectItem>
-                    <SelectItem value="admin">Admin</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
               {/* Error */}
               {error && (
                 <div className="flex items-start gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -127,22 +113,6 @@ export default function LoginPage() {
                   <p className="text-sm text-red-700">{error}</p>
                 </div>
               )}
-
-              {/* Forgot Password */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <Lock className="w-3 h-3" />
-                  <span>Secure access</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowForgotPassword(true)}
-                  className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                  disabled={isLoading}
-                >
-                  Forgot Password?
-                </button>
-              </div>
 
               <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
                 {isLoading ? 'Signing in...' : 'Sign In'}
