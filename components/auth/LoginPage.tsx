@@ -116,7 +116,6 @@ export default function LoginPage() {
                   <SelectContent>
                     <SelectItem value="staff">Staff</SelectItem>
                     <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="super_admin">Super Admin</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -149,20 +148,6 @@ export default function LoginPage() {
                 {isLoading ? 'Signing in...' : 'Sign In'}
               </Button>
             </form>
-
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
-                {"Don't have an account? "}
-                <button
-                  type="button"
-                  onClick={() => router.push('/signup')}
-                  className="text-blue-600 hover:text-blue-700 hover:underline"
-                  disabled={isLoading}
-                >
-                  Create Account
-                </button>
-              </p>
-            </div>
           </CardContent>
         </Card>
 
