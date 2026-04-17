@@ -19,7 +19,7 @@ export function MedicineDetail() {
 
   if (!medicine) {
     return (
-      <div className="p-8">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="text-center py-20">
           <h2 className="text-lg font-medium text-gray-900 mb-2">
             Medicine Not Found
@@ -65,47 +65,47 @@ export function MedicineDetail() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
 
       {/* Back link */}
       <Link
         href="/inventory"
-        className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 mb-5"
+        className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-blue-600 hover:text-blue-800 mb-3 sm:mb-5"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Inventory
       </Link>
 
       {/* Title */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-2">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 mb-2 sm:mb-3">
           {medicine.name}
         </h1>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           {getStatusBadge(status)}
-          <span className="text-sm text-gray-500">{medicine.generic}</span>
+          <span className="text-xs sm:text-sm text-gray-500">{medicine.generic}</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
         {/* Medicine Information */}
-        <div className="col-span-2 space-y-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-5">
+        <div className="col-span-1 lg:col-span-2 space-y-4 sm:space-y-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-5 gap-3">
               <h3 className="text-base font-medium text-gray-900">
                 Medicine Information
               </h3>
               <Link
                 href={`/inventory/${medicine.id}/edit`}
-                className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-blue-600 hover:text-blue-800 whitespace-nowrap"
               >
                 <Edit className="w-4 h-4" />
                 Edit Details
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4 sm:gap-y-5">
               <div>
                 <p className="text-xs text-gray-500 mb-1">Brand Name</p>
                 <p className="text-sm text-gray-900">{medicine.name}</p>

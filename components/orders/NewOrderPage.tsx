@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Plus, Trash2, AlertTriangle } from "lucide-react";
-import { mockCustomers, mockMedicines } from "../data/mockData";
+import { mockCustomers, mockMedicines, addOrder, addCustomer } from "../data/mockData";
 
 interface OrderItem {
   medicine_id: string;
@@ -109,43 +109,71 @@ export function NewOrderPage() {
       return;
     }
 
+    const now = new Date().toISOString();
+    const today = now.split('T')[0];
+    const customer =
+      mockCustomers.find((c) => c.phone === formData.phone) ??
+      addCustomer({ name: formData.name, phone: formData.phone, address: formData.address });
+
+    addOrder({
+      customer_id: customer.id,
+      date: today,
+      channel,
+      status: "pending",
+      payment_status: "unpaid",
+      items: items.map((item) => ({
+        medicine_name: item.medicine_name,
+        strength: item.strength,
+        form: item.form,
+        qty: item.qty,
+        unit_price: item.unit_price,
+      })),
+      subtotal,
+      tax,
+      discount,
+      total,
+      created_at: now,
+      updated_at: now,
+      notes,
+    });
+
     alert("Order created successfully!");
 
     router.push("/orders");
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
 
       {/* Header */}
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <Link
           href="/orders"
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-blue-600 hover:text-blue-700 mb-2 sm:mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Orders
         </Link>
 
-        <h1 className="text-gray-900">New Order</h1>
+        <h1 className="text-xl sm:text-2xl lg:text-3xl text-gray-900 font-semibold">New Order</h1>
       </div>
 
       <form onSubmit={handleSubmit}>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
           {/* Left Side */}
 
-          <div className="col-span-2 space-y-6">
+          <div className="col-span-1 lg:col-span-2 space-y-4 sm:space-y-6">
 
             {/* Customer */}
 
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
 
-              <h3 className="text-gray-900 mb-4">Customer Details</h3>
+              <h3 className="text-lg sm:text-xl text-gray-900 mb-3 sm:mb-4 font-semibold">Customer Details</h3>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 
                 <input
                   type="tel"
@@ -172,7 +200,7 @@ export function NewOrderPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, address: e.target.value })
                   }
-                  className="px-3 py-2 border border-gray-300 rounded-lg col-span-2"
+                  className="px-3 py-2 border border-gray-300 rounded-lg col-span-1 sm:col-span-2"
                 />
               </div>
             </div>
@@ -183,12 +211,12 @@ export function NewOrderPage() {
 
               <h3 className="text-gray-900 mb-4">Add Items</h3>
 
-              <div className="flex gap-3 mb-4">
+              <div className="flex flex-wrap gap-3 mb-4">
 
                 <select
                   value={selectedMedicine}
                   onChange={(e) => setSelectedMedicine(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                  className="flex-1 min-w-0 px-3 py-2 border border-gray-300 rounded-lg"
                 >
                   <option value="">Select medicine...</option>
 
@@ -230,6 +258,7 @@ export function NewOrderPage() {
 
               ) : (
 
+                <div className="overflow-x-auto">
                 <table className="w-full">
 
                   <tbody className="divide-y">
@@ -274,6 +303,7 @@ export function NewOrderPage() {
                   </tbody>
 
                 </table>
+                </div>
 
               )}
 

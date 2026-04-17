@@ -34,7 +34,7 @@ export function EditOrderForm() {
 
   if (!existing) {
     return (
-      <div className="p-8 text-center">
+      <div className="p-4 sm:p-6 lg:p-8 text-center">
         <p className="text-gray-500 mb-4">Order not found.</p>
         <Link href="/orders" className="text-blue-600 hover:text-blue-800 text-sm">
           ← Back to Orders
@@ -100,20 +100,20 @@ export function EditOrderForm() {
     "w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500";
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
 
       {/* Back */}
       <Link
         href={`/orders/${id}`}
-        className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 mb-5"
+        className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-blue-600 hover:text-blue-800 mb-3 sm:mb-5"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Order {id}
       </Link>
 
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-1">Edit Order</h1>
-        <p className="text-sm text-gray-500">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 mb-1 sm:mb-2">Edit Order</h1>
+        <p className="text-xs sm:text-sm text-gray-500">
           Editing order for{" "}
           <span className="font-medium text-gray-700">
             {customer?.name ?? "Unknown"}
@@ -121,15 +121,15 @@ export function EditOrderForm() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
         {/* Left — order settings + items */}
-        <div className="col-span-2 space-y-6">
+        <div className="col-span-1 lg:col-span-2 space-y-4 sm:space-y-6">
 
           {/* Order Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-base font-medium text-gray-900 mb-5">Order Details</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-base font-medium text-gray-900 mb-4 sm:mb-5">Order Details</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 
               <div>
                 <label className="block text-xs text-gray-500 mb-1">Status</label>
@@ -216,9 +216,9 @@ export function EditOrderForm() {
               {form.items.map((item, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-12 gap-2 items-end p-3 bg-gray-50 rounded-lg border border-gray-200"
+                  className="grid grid-cols-2 sm:grid-cols-12 gap-2 items-end p-3 bg-gray-50 rounded-lg border border-gray-200"
                 >
-                  <div className="col-span-4">
+                  <div className="col-span-2 sm:col-span-4">
                     <label className="block text-xs text-gray-400 mb-1">Medicine</label>
                     <input
                       value={item.medicine_name}
@@ -228,7 +228,7 @@ export function EditOrderForm() {
                     />
                   </div>
 
-                  <div className="col-span-2">
+                  <div className="col-span-1 sm:col-span-2">
                     <label className="block text-xs text-gray-400 mb-1">Strength</label>
                     <input
                       value={item.strength}
@@ -238,7 +238,7 @@ export function EditOrderForm() {
                     />
                   </div>
 
-                  <div className="col-span-2">
+                  <div className="col-span-1 sm:col-span-2">
                     <label className="block text-xs text-gray-400 mb-1">Form</label>
                     <select
                       value={item.form}
@@ -251,7 +251,7 @@ export function EditOrderForm() {
                     </select>
                   </div>
 
-                  <div className="col-span-1">
+                  <div className="col-span-1 sm:col-span-1">
                     <label className="block text-xs text-gray-400 mb-1">Qty</label>
                     <input
                       type="number"
@@ -262,7 +262,7 @@ export function EditOrderForm() {
                     />
                   </div>
 
-                  <div className="col-span-2">
+                  <div className="col-span-1 sm:col-span-2">
                     <label className="block text-xs text-gray-400 mb-1">Price ($)</label>
                     <input
                       type="number"
@@ -274,7 +274,7 @@ export function EditOrderForm() {
                     />
                   </div>
 
-                  <div className="col-span-1 flex justify-center">
+                  <div className="col-span-2 sm:col-span-1 flex justify-end sm:justify-center">
                     <button
                       onClick={() => handleRemoveItem(index)}
                       title="Remove item"

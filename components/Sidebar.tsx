@@ -11,7 +11,11 @@ import {
   Settings,
 } from "lucide-react";
 
-export default function Sidebar() {
+interface SidebarProps {
+  onNavigate?: () => void;
+}
+
+export default function Sidebar({ onNavigate }: SidebarProps) {
   const pathname = usePathname();
 
   const navItems = [
@@ -24,15 +28,15 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 h-screen bg-white border-r border-gray-200 flex-shrink-0">
+    <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 flex-shrink-0 flex flex-col overflow-y-auto">
 
-      <div className="p-6">
-        <h1 className="text-blue-600 text-lg font-semibold">
-          Pharmacy MS
+      <div className="p-4 sm:p-6">
+        <h1 className="text-blue-600 text-base sm:text-lg font-semibold">
+          DawaAI
         </h1>
       </div>
 
-      <nav className="px-3">
+      <nav className="px-3 flex-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname.startsWith(item.path);
@@ -41,14 +45,15 @@ export default function Sidebar() {
             <Link
               key={item.path}
               href={item.path}
+              onClick={onNavigate}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 transition-colors ${
                 isActive
                   ? "bg-blue-100 text-blue-700 font-medium"
                   : "text-gray-600 hover:bg-gray-100"
               }`}
             >
-              <Icon className="w-5 h-5" />
-              <span className="text-sm">{item.label}</span>
+              <Icon className="w-5 h-5 flex-shrink-0" />
+              <span className="text-sm whitespace-nowrap">{item.label}</span>
             </Link>
           );
         })}

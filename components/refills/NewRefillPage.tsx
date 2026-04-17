@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Plus, Trash2 } from "lucide-react";
-import { mockCustomers, mockMedicines } from "../data/mockData";
+import { mockCustomers, mockMedicines, addRefill, addCustomer } from "../data/mockData";
 
 interface MedicineItem {
   medicine_id: string;
@@ -89,6 +89,24 @@ export function NewRefillPage() {
       return;
     }
 
+    const today = new Date().toISOString().split('T')[0];
+    const customer =
+      mockCustomers.find((c) => c.phone === formData.phone) ??
+      addCustomer({ name: formData.name, phone: formData.phone, address: formData.address });
+
+    addRefill({
+      customer_id: customer.id,
+      status: "new",
+      channel: "manual",
+      medicines: medicines.map((m) => ({
+        medicine_name: m.medicine_name,
+        strength: m.strength,
+        qty: m.qty,
+        unit_price: m.unit_price,
+      })),
+      request_date: today,
+    });
+
     alert("Refill request created successfully!");
 
     router.push("/refills");
@@ -96,21 +114,21 @@ export function NewRefillPage() {
 
   return (
 
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
 
       {/* Header */}
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
 
         <Link
           href="/refills"
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-blue-600 hover:text-blue-700 mb-2 sm:mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Refills
         </Link>
 
-        <h1 className="text-gray-900">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl text-gray-900 font-semibold">
           New Refill Request
         </h1>
 
@@ -118,21 +136,21 @@ export function NewRefillPage() {
 
       <form onSubmit={handleSubmit}>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
           {/* Main Section */}
 
-          <div className="col-span-2 space-y-6">
+          <div className="col-span-1 lg:col-span-2 space-y-4 sm:space-y-6">
 
             {/* Customer */}
 
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
 
-              <h3 className="text-gray-900 mb-4">
+              <h3 className="text-lg sm:text-xl text-gray-900 mb-3 sm:mb-4 font-semibold">
                 Customer Information
               </h3>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                 <input
                   type="tel"
@@ -167,7 +185,7 @@ export function NewRefillPage() {
                       address: e.target.value,
                     })
                   }
-                  className="px-3 py-2 border border-gray-300 rounded-lg col-span-2"
+                  className="px-3 py-2 border border-gray-300 rounded-lg col-span-1 sm:col-span-2"
                 />
 
               </div>
@@ -182,14 +200,14 @@ export function NewRefillPage() {
                 Add Medicines
               </h3>
 
-              <div className="flex gap-3 mb-4">
+              <div className="flex flex-wrap gap-3 mb-4">
 
                 <select
                   value={selectedMedicine}
                   onChange={(e) =>
                     setSelectedMedicine(e.target.value)
                   }
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
+                  className="flex-1 min-w-0 px-3 py-2 border border-gray-300 rounded-lg"
                 >
 
                   <option value="">
@@ -240,6 +258,7 @@ export function NewRefillPage() {
 
               ) : (
 
+                <div className="overflow-x-auto">
                 <table className="w-full">
 
                   <tbody className="divide-y">
@@ -288,6 +307,7 @@ export function NewRefillPage() {
                   </tbody>
 
                 </table>
+                </div>
 
               )}
 

@@ -17,7 +17,7 @@ export function OrderDetail() {
 
   if (!order) {
     return (
-      <div className="p-8">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="text-center">
           <h2 className="text-gray-900 mb-2">Order Not Found</h2>
 
@@ -96,34 +96,34 @@ export function OrderDetail() {
     order.status !== "cancelled" && order.status !== "completed";
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
 
       {/* Header */}
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
 
         <Link
           href="/orders"
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-blue-600 hover:text-blue-700 mb-2 sm:mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Orders
         </Link>
 
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 
           <div>
 
-            <h1 className="text-gray-900 mb-2">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl text-gray-900 mb-2 sm:mb-3 font-semibold">
               Order {order.id}
             </h1>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               {getStatusBadge(order.status)}
               {getChannelBadge(order.channel)}
             </div>
 
-            <div className="mt-2 text-sm text-gray-600">
+            <div className="mt-2 text-xs sm:text-sm text-gray-600">
               <div>Created: {order.created_at}</div>
               <div>Last Updated: {order.updated_at}</div>
             </div>
@@ -133,19 +133,19 @@ export function OrderDetail() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
         {/* LEFT SIDE */}
 
-        <div className="col-span-2 space-y-6">
+        <div className="col-span-1 lg:col-span-2 space-y-4 sm:space-y-6">
 
           {/* Customer */}
 
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
 
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4 sm:mb-5 gap-3">
 
-              <h3 className="text-gray-900">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">
                 Customer Information
               </h3>
 
@@ -156,7 +156,7 @@ export function OrderDetail() {
 
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
               <div>
                 <div className="text-sm text-gray-600 mb-1">
@@ -182,7 +182,7 @@ export function OrderDetail() {
                 </div>
               </div>
 
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
 
                 <div className="text-sm text-gray-600 mb-1">
                   Address
@@ -217,6 +217,7 @@ export function OrderDetail() {
 
             </div>
 
+            <div className="overflow-x-auto">
             <table className="w-full">
 
               <tbody className="divide-y">
@@ -276,6 +277,7 @@ export function OrderDetail() {
               </tbody>
 
             </table>
+            </div>
 
           </div>
 

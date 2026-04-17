@@ -25,7 +25,7 @@ export function RefillDetail() {
 
   if (!refill) {
     return (
-      <div className="p-8 text-center">
+      <div className="p-4 sm:p-6 lg:p-8 text-center">
         <h2 className="text-gray-900 mb-2">
           Refill Not Found
         </h2>
@@ -116,21 +116,21 @@ export function RefillDetail() {
 
   return (
 
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
 
       {/* Header */}
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
 
         <Link
           href="/refills"
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-blue-600 hover:text-blue-700 mb-2 sm:mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Refills
         </Link>
 
-        <h1 className="text-gray-900 mb-2">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl text-gray-900 mb-2 sm:mb-3 font-semibold">
           Refill {refill.id}
         </h1>
 
@@ -141,12 +141,12 @@ export function RefillDetail() {
 
       {/* Layout */}
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
 
         {/* LEFT */}
 
-        <div className="col-span-2 space-y-6">
+        <div className="col-span-1 lg:col-span-2 space-y-4 sm:space-y-6">
 
           {/* Customer */}
 
@@ -156,7 +156,7 @@ export function RefillDetail() {
               Customer Information
             </h3>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
               <div>
                 <div className="text-sm text-gray-600 mb-1">Name</div>
@@ -175,7 +175,7 @@ export function RefillDetail() {
                 <div className="text-gray-900">{customer?.phone || "—"}</div>
               </div>
 
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <div className="text-sm text-gray-600 mb-1">Address</div>
                 <div className="text-gray-900">{customer?.address || "—"}</div>
               </div>
@@ -193,6 +193,7 @@ export function RefillDetail() {
               <h3 className="text-gray-900">Medicines</h3>
             </div>
 
+            <div className="overflow-x-auto">
             <table className="w-full">
 
               <thead className="bg-gray-50 border-b border-gray-200">
@@ -240,6 +241,7 @@ export function RefillDetail() {
               </tbody>
 
             </table>
+            </div>
 
           </div>
 

@@ -12,7 +12,7 @@ export function CustomerProfile() {
 
   if (!customer) {
     return (
-      <div className="p-8">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="text-center">
           <h2 className="text-gray-900 mb-2">Customer Not Found</h2>
           <Link href="/customers" className="text-blue-600 hover:text-blue-700">
@@ -61,20 +61,20 @@ export function CustomerProfile() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <Link
           href="/customers"
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-blue-600 hover:text-blue-700 mb-2 sm:mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Customers
         </Link>
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-gray-900 mb-2">{customer.name}</h1>
-            <div className="flex items-center gap-3">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl text-gray-900 mb-2 sm:mb-3 font-semibold">{customer.name}</h1>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               {getBadge(customer.type)}
             </div>
           </div>
@@ -82,9 +82,9 @@ export function CustomerProfile() {
       </div>
 
       {/* Basic Information */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h3 className="text-gray-900 mb-4">Basic Information</h3>
-        <div className="grid grid-cols-2 gap-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 mb-4 sm:mb-6">
+        <h3 className="text-lg sm:text-xl text-gray-900 mb-3 sm:mb-4 font-semibold">Basic Information</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div className="flex items-start gap-3">
             <Phone className="w-5 h-5 text-gray-400 mt-0.5" />
             <div>
@@ -117,7 +117,7 @@ export function CustomerProfile() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="text-sm text-gray-600 mb-1">Total Orders</div>
           <div className="text-2xl text-gray-900">{customer.total_orders}</div>
@@ -129,7 +129,7 @@ export function CustomerProfile() {
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="text-sm text-gray-600 mb-1">Lifetime Value</div>
           <div className="text-2xl text-gray-900">
-            ${orders.reduce((sum, o) => sum + o.amount, 0).toFixed(2)}
+            ${orders.reduce((sum, o) => sum + o.total, 0).toFixed(2)}
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@ export function CustomerProfile() {
                   <tr key={order.id} className="hover:bg-gray-50">
                     <td className="px-6 py-3 text-gray-900">{order.id}</td>
                     <td className="px-6 py-3 text-gray-700">{order.date}</td>
-                    <td className="px-6 py-3 text-gray-700">${order.amount.toFixed(2)}</td>
+                    <td className="px-6 py-3 text-gray-700">${(order.total ?? 0).toFixed(2)}</td>
                     <td className="px-6 py-3">
                       <div className="flex items-center gap-2 text-gray-700">
                         {getChannelIcon(order.channel)}

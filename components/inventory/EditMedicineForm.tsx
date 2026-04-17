@@ -27,7 +27,7 @@ export function EditMedicineForm() {
 
   if (!existing) {
     return (
-      <div className="p-8 text-center">
+      <div className="p-4 sm:p-6 lg:p-8 text-center">
         <p className="text-gray-500 mb-4">Medicine not found.</p>
         <Link href="/inventory" className="text-blue-600 hover:text-blue-800 text-sm">
           ← Back to Inventory
@@ -59,26 +59,26 @@ export function EditMedicineForm() {
     "w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500";
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
 
       {/* Back */}
       <Link
         href={`/inventory/${id}`}
-        className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 mb-5"
+        className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-blue-600 hover:text-blue-800 mb-3 sm:mb-5"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to {existing.name}
       </Link>
 
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-1">Edit Medicine</h1>
-        <p className="text-sm text-gray-500">Update details for {existing.name}</p>
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 mb-1 sm:mb-2">Edit Medicine</h1>
+        <p className="text-xs sm:text-sm text-gray-500">Update details for {existing.name}</p>
       </div>
 
       <div className="max-w-2xl">
-        <div className="bg-white rounded-lg border border-gray-200 p-6 space-y-5">
+        <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 space-y-4 sm:space-y-5">
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 
             <div>
               <label className="block text-xs text-gray-500 mb-1">Brand Name</label>

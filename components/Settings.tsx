@@ -71,11 +71,11 @@ export default function Settings() {
   };
 
   return (
-    <div className="p-8 pb-24">
+    <div className="p-4 sm:p-6 lg:p-8 pb-12 sm:pb-20 lg:pb-24">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-gray-900 mb-2">Settings</h1>
-        <p className="text-gray-600">Manage pharmacy configuration and user preferences</p>
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl text-gray-900 mb-1 sm:mb-2 font-semibold">Settings</h1>
+        <p className="text-sm sm:text-base text-gray-600">Manage pharmacy configuration and user preferences</p>
       </div>
 
       {/* 1. Pharmacy Information */}
