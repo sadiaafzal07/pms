@@ -53,7 +53,7 @@ export default function LoginPage() {
           <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
             <Shield className="w-7 h-7 sm:w-9 sm:h-9 text-white" />
           </div>
-          <h1 className="text-lg sm:text-xl lg:text-2xl text-gray-900 mb-1 sm:mb-2">Pharmacy Management System</h1>
+          <h1 className="text-lg sm:text-xl lg:text-2xl text-gray-900 mb-1 sm:mb-2">Dawa AI</h1>
           <p className="text-sm sm:text-base text-gray-600">Sign in to access your account</p>
         </div>
 
